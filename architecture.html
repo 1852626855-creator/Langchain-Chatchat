@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Langchain-Chatchat 系统架构图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', 'SimHei', sans-serif;
+            background: white;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .document-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border: 1px solid #ddd;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #1a73e8;
+        }
+        
+        .architecture-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        .architecture-table th {
+            background: linear-gradient(135deg, #1a73e8, #1557b0);
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            border: 1px solid #0d47a1;
+        }
+        
+        .architecture-table td {
+            padding: 15px;
+            border: 1px solid #ddd;
+            vertical-align: middle;
+        }
+        
+        .layer-name {
+            font-weight: bold;
+            color: #333;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .layer-technology {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .component-list {
+            list-style: none;
+            padding-left: 10px;
+        }
+        
+        .component-item {
+            padding: 5px 0;
+            font-size: 12px;
+            color: #333;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .component-item:last-child {
+            border-bottom: none;
+        }
+        
+        .component-icon {
+            margin-right: 8px;
+            font-size: 14px;
+        }
+        
+        .arrow-cell {
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+            background: #f9f9f9;
+        }
+        
+        .tech-stack-section {
+            margin-top: 30px;
+        }
+        
+        .section-title {
+            font-size: 15px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 4px solid #1a73e8;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        
+        .tech-card {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            text-align: center;
+        }
+        
+        .tech-name {
+            font-weight: bold;
+            color: #1a73e8;
+            font-size: 13px;
+        }
+        
+        .tech-desc {
+            font-size: 11px;
+            color: #666;
+            margin-top: 4px;
+        }
+        
+        .flow-section {
+            margin-top: 30px;
+        }
+        
+        .flow-diagram {
+            background: #f5f8fc;
+            border: 1px solid #d0e3f0;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .flow-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .flow-step:last-child {
+            margin-bottom: 0;
+        }
+        
+        .flow-box {
+            background: white;
+            border: 1px solid #1a73e8;
+            border-radius: 4px;
+            padding: 8px 15px;
+            font-size: 12px;
+            color: #333;
+            flex: 1;
+        }
+        
+        .flow-arrow {
+            font-size: 14px;
+            color: #1a73e8;
+            margin: 0 10px;
+        }
+        
+        .flow-icon {
+            margin-right: 8px;
+        }
+        
+        .footer-info {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            text-align: center;
+            font-size: 11px;
+            color: #999;
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+            }
+            .document-container {
+                box-shadow: none;
+                border: none;
+                width: 100%;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="document-container">
+        <div class="title">🏗️ Langchain-Chatchat 系统架构图</div>
+        
+        <table class="architecture-table">
+            <thead>
+                <tr>
+                    <th>层级</th>
+                    <th>技术栈</th>
+                    <th>核心组件</th>
+                    <th>端口</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="layer-name">📱 前端层</div>
+                        <div class="layer-technology">Vue 3 + Element Plus</div>
+                    </td>
+                    <td>Vue 3, Element Plus, Vite</td>
+                    <td>
+                        <ul class="component-list">
+                            <li class="component-item"><span class="component-icon">🔐</span>Login.vue - 用户登录/注册</li>
+                            <li class="component-item"><span class="component-icon">💬</span>Chat.vue - 对话界面</li>
+                            <li class="component-item"><span class="component-icon">📚</span>KnowledgeBase.vue - 知识库管理</li>
+                        </ul>
+                    </td>
+                    <td>5173</td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="arrow-cell">⬇️</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="layer-name">🚪 API 网关层</div>
+                        <div class="layer-technology">FastAPI</div>
+                    </td>
+                    <td>FastAPI, Uvicorn, JWT</td>
+                    <td>
+                        <ul class="component-list">
+                            <li class="component-item"><span class="component-icon">🔑</span>/auth/* - 用户认证接口</li>
+                            <li class="component-item"><span class="component-icon">💬</span>/chat/* - 对话接口</li>
+                            <li class="component-item"><span class="component-icon">📚</span>/knowledge_base/* - 知识库接口</li>
+                        </ul>
+                    </td>
+                    <td>7861</td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="arrow-cell">⬇️</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="layer-name">🧠 核心服务层</div>
+                        <div class="layer-technology">LangChain + LangServe</div>
+                    </td>
+                    <td>LangChain, LangServe, FAISS</td>
+                    <td>
+                        <ul class="component-list">
+                            <li class="component-item"><span class="component-icon">⚙️</span>LLMChain - 语言模型链</li>
+                            <li class="component-item"><span class="component-icon">🧠</span>Memory - 对话记忆</li>
+                            <li class="component-item"><span class="component-icon">🛠️</span>Tools - 工具调用</li>
+                            <li class="component-item"><span class="component-icon">📊</span>FAISS - 向量检索</li>
+                        </ul>
+                    </td>
+                    <td>8000 (LangServe)</td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="arrow-cell">⬇️</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="layer-name">💾 数据层</div>
+                        <div class="layer-technology">SQLite + FAISS</div>
+                    </td>
+                    <td>SQLite, FAISS, Embeddings</td>
+                    <td>
+                        <ul class="component-list">
+                            <li class="component-item"><span class="component-icon">👤</span>用户认证数据</li>
+                            <li class="component-item"><span class="component-icon">📝</span>对话历史记录</li>
+                            <li class="component-item"><span class="component-icon">📚</span>知识库向量数据</li>
+                        </ul>
+                    </td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="tech-stack-section">
+            <div class="section-title">🛠️ 技术栈明细</div>
+            <div class="tech-grid">
+                <div class="tech-card"><div class="tech-name">FastAPI</div><div class="tech-desc">高性能API框架</div></div>
+                <div class="tech-card"><div class="tech-name">LangChain</div><div class="tech-desc">LLM应用框架</div></div>
+                <div class="tech-card"><div class="tech-name">LangServe</div><div class="tech-desc">服务部署</div></div>
+                <div class="tech-card"><div class="tech-name">FAISS</div><div class="tech-desc">向量数据库</div></div>
+                <div class="tech-card"><div class="tech-name">Vue 3</div><div class="tech-desc">前端框架</div></div>
+                <div class="tech-card"><div class="tech-name">SQLite</div><div class="tech-desc">数据存储</div></div>
+            </div>
+        </div>
+        
+        <div class="flow-section">
+            <div class="section-title">🔄 数据流向</div>
+            <div class="flow-diagram">
+                <div class="flow-step">
+                    <div class="flow-box"><span class="flow-icon">👤</span>用户请求</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-box"><span class="flow-icon">🚪</span>API网关</div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-box"><span class="flow-icon">🚪</span>API网关</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-box"><span class="flow-icon">🧠</span>LangChain处理</div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-box"><span class="flow-icon">🧠</span>LangChain处理</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-box"><span class="flow-icon">📊</span>FAISS检索(可选)</div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-box"><span class="flow-icon">🧠</span>LangChain处理</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-box"><span class="flow-icon">💬</span>返回响应</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-info">
+            Langchain-Chatchat v0.2.10 | 基于 LangChain 框架开发
+        </div>
+    </div>
+</body>
+</html>

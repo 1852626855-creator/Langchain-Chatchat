@@ -1,0 +1,33 @@
+.idea
+# Langchain-Chatchat
+docs
+.github
+tests
+Dockerfile
+.dockerignore
+.gitignore
+.gitmodules
+README.md
+README_en.md
+README_ja.md
+LICENSE
+requirements_api.txt
+requirements_lite.txt
+requirements_webui.txt
+# bge-large-zh-v1.5
+bge-large-zh-v1.5/README.md
+# chatglm3-6b
+
+# secrets and local runtime state
+.env
+.env.*
+auth.db
+chat.db
+*.db
+*.sqlite
+*.sqlite3
+configs/model_config.py
+
+# frontend local artifacts
+frontend_vue/node_modules
+frontend_vue/dist
